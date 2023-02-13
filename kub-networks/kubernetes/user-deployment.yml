@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-api
+  template:
+    metadata:
+      labels:
+        app: users-api
+    spec: 
+      containers:
+        - name: users
+          image: vaibhavrajnathchauhan/kub-user-demo:6
+          env:
+            - name: AUTH_ADDRESS
+              # value: "10.108.4.235"   # -> service ip address 
+              # or
+              value: "auth-service.default"  # -> service name + namespace

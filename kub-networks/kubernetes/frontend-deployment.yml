@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-api
+  template:
+    metadata:
+      labels:
+        app: frontend-api
+    spec: 
+      containers:
+        - name: task
+          image: vaibhavrajnathchauhan/kub-frontend-demo:6
+          # env:
+          #   - name: AUTH_ADDRESS
+          #     # value: "10.108.4.235"   # -> service ip address 
+          #     # or
+          #     value: "auth-service.default"  # -> service name + namespace
+          #   - name: TASKS_FOLDER
+          #     value: tasks
